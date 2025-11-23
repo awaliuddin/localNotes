@@ -36,7 +36,7 @@ A beautiful, feature-rich, and privacy-focused note-taking application that runs
 
 1. **Clone or download this repository**
    ```bash
-   git clone https://github.com/yourusername/localNotes.git
+   git clone https://github.com/awaliuddin/localNotes.git
    cd localNotes
    ```
 
