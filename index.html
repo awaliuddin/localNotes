@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalNotes - Your Personal Note-Taking App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1>📝 LocalNotes</h1>
+                <p class="subtitle">Your thoughts, organized</p>
+            </div>
+            <div class="header-right">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search notes..." class="search-input">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <button id="themeToggle" class="icon-btn" title="Toggle Dark Mode">🌙</button>
+                <button id="exportBtn" class="icon-btn" title="Export Notes">📤</button>
+                <button id="importBtn" class="icon-btn" title="Import Notes">📥</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <button id="newNoteBtn" class="new-note-btn">
+                    ➕ New Note
+                </button>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Notes</span>
+                        <span class="stat-value" id="totalNotes">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Tags</span>
+                        <span class="stat-value" id="totalTags">0</span>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Filter by Tag</h3>
+                    <div id="tagFilter" class="tag-filter">
+                        <button class="tag-filter-btn active" data-tag="all">All Notes</button>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Sort By</h3>
+                    <select id="sortSelect" class="sort-select">
+                        <option value="modified">Last Modified</option>
+                        <option value="created">Date Created</option>
+                        <option value="title">Title (A-Z)</option>
+                        <option value="color">Color</option>
+                    </select>
+                </div>
+
+                <div class="keyboard-shortcuts">
+                    <h4>Keyboard Shortcuts</h4>
+                    <div class="shortcut-list">
+                        <div><kbd>Ctrl</kbd> + <kbd>N</kbd> New Note</div>
+                        <div><kbd>Ctrl</kbd> + <kbd>S</kbd> Save</div>
+                        <div><kbd>Ctrl</kbd> + <kbd>F</kbd> Search</div>
+                        <div><kbd>Ctrl</kbd> + <kbd>D</kbd> Delete</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Notes List -->
+            <section class="notes-list-section">
+                <div class="section-header">
+                    <h2 id="sectionTitle">All Notes</h2>
+                    <span id="noteCount" class="note-count">0 notes</span>
+                </div>
+                <div id="notesList" class="notes-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">📝</div>
+                        <h3>No notes yet</h3>
+                        <p>Create your first note to get started!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Note Editor -->
+            <section class="note-editor-section">
+                <div id="noNoteSelected" class="no-note-selected">
+                    <div class="empty-icon">✍️</div>
+                    <h3>Select a note to view</h3>
+                    <p>Or create a new one to get started</p>
+                </div>
+
+                <div id="noteEditor" class="note-editor" style="display: none;">
+                    <div class="editor-toolbar">
+                        <input type="text" id="noteTitle" class="note-title-input" placeholder="Note title...">
+                        <div class="editor-actions">
+                            <button id="pinBtn" class="icon-btn" title="Pin Note">📌</button>
+                            <select id="colorSelect" class="color-select" title="Note Color">
+                                <option value="">Default</option>
+                                <option value="red">🔴 Red</option>
+                                <option value="orange">🟠 Orange</option>
+                                <option value="yellow">🟡 Yellow</option>
+                                <option value="green">🟢 Green</option>
+                                <option value="blue">🔵 Blue</option>
+                                <option value="purple">🟣 Purple</option>
+                                <option value="pink">🌸 Pink</option>
+                            </select>
+                            <button id="deleteBtn" class="icon-btn delete-btn" title="Delete Note">🗑️</button>
+                        </div>
+                    </div>
+
+                    <div class="tags-section">
+                        <input type="text" id="tagInput" class="tag-input" placeholder="Add tags (press Enter)...">
+                        <div id="noteTags" class="note-tags"></div>
+                    </div>
+
+                    <div class="editor-tabs">
+                        <button class="editor-tab active" data-tab="write">✏️ Write</button>
+                        <button class="editor-tab" data-tab="preview">👁️ Preview</button>
+                        <button class="editor-tab" data-tab="split">⚡ Split View</button>
+                    </div>
+
+                    <div class="editor-content">
+                        <div class="editor-pane write-pane active">
+                            <textarea id="noteContent" class="note-textarea" placeholder="Start writing your note...
+
+Supports Markdown:
+# Heading 1
+## Heading 2
+**bold** *italic*
+- List item
+[ ] Todo item
+[x] Completed todo
+`code`
+> Quote"></textarea>
+                        </div>
+                        <div class="editor-pane preview-pane">
+                            <div id="markdownPreview" class="markdown-preview"></div>
+                        </div>
+                    </div>
+
+                    <div class="editor-footer">
+                        <div class="note-meta">
+                            <span id="wordCount">0 words</span>
+                            <span id="charCount">0 characters</span>
+                            <span id="lastSaved">Not saved</span>
+                        </div>
+                        <button id="saveBtn" class="save-btn">💾 Save</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Import Modal -->
+    <div id="importModal" class="modal">
+        <div class="modal-content">
+            <h2>Import Notes</h2>
+            <p>Select a JSON file to import notes:</p>
+            <input type="file" id="importFile" accept=".json">
+            <div class="modal-actions">
+                <button id="confirmImport" class="btn-primary">Import</button>
+                <button id="cancelImport" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
