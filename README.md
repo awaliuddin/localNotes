@@ -2,7 +2,7 @@
 
 A beautiful, feature-rich, and privacy-focused note-taking application that runs entirely in your browser. No server, no signup, just pure local storage.
 
-![LocalNotes](https://img.shields.io/badge/version-1.0.0-blue)
+![LocalNotes](https://img.shields.io/badge/version-2.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Pure JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-yellow)
 
@@ -12,18 +12,29 @@ A beautiful, feature-rich, and privacy-focused note-taking application that runs
 - 📝 **Rich Note Taking** - Create, edit, and delete notes with ease
 - 💾 **Auto-save** - Your notes are automatically saved as you type
 - 🔍 **Powerful Search** - Search through titles, content, and tags in real-time
-- 🏷️ **Tag System** - Organize notes with custom tags
+- 🏷️ **Tag System** - Organize notes with custom tags and filters
 - 📌 **Pin Notes** - Keep important notes at the top
-- 🎨 **Color Coding** - Color-code your notes for visual organization
+- ⭐ **Favorites** - Star your most important notes for quick access
+- 📦 **Archive** - Archive old notes without deleting them
+- 🎨 **Color Coding** - 7 beautiful colors for visual organization
+
+### Productivity Features
+- 📋 **Note Templates** - 7 pre-made templates (Meeting, To-Do, Journal, Ideas, Code, Research)
+- ↶ **Undo/Redo** - Full undo/redo support with 50-step history
+- 📑 **Duplicate Notes** - Clone notes instantly
+- 🖱️ **Context Menu** - Right-click notes for quick actions
+- 🔔 **Toast Notifications** - Beautiful feedback for all actions
+- 💬 **Welcome Screen** - Guided onboarding for new users
 
 ### Advanced Features
-- ✍️ **Markdown Support** - Write in markdown with live preview
+- ✍️ **Enhanced Markdown** - Support for headers, bold, italic, strikethrough, links, images, code blocks, lists, todos, blockquotes, and more
 - 👁️ **Split View** - Write and preview simultaneously
 - 📤 **Export/Import** - Backup and restore your notes as JSON
 - 🌙 **Dark Mode** - Beautiful dark theme for night-time writing
-- ⌨️ **Keyboard Shortcuts** - Work faster with keyboard commands
-- 📊 **Statistics** - Track total notes and tags
+- ⌨️ **Keyboard Shortcuts** - 10+ shortcuts for power users
+- 📊 **Statistics** - Track notes, tags, archived items, and storage usage
 - 🔢 **Word Count** - Real-time word and character counting
+- 💾 **Storage Monitor** - Visual indicator of storage usage
 - 📱 **Responsive Design** - Works perfectly on all devices
 
 ### Privacy & Performance
@@ -31,6 +42,7 @@ A beautiful, feature-rich, and privacy-focused note-taking application that runs
 - ⚡ **Lightning Fast** - No server delays, instant response
 - 🌐 **Offline First** - Works without internet connection
 - 🎯 **Zero Dependencies** - Pure vanilla JavaScript, no frameworks
+- 🔐 **No Tracking** - Zero analytics or telemetry
 
 ## 🚀 Quick Start
 
@@ -56,46 +68,86 @@ A beautiful, feature-rich, and privacy-focused note-taking application that runs
 ## 📖 How to Use
 
 ### Creating Notes
-1. Click the **"➕ New Note"** button in the sidebar
-2. Give your note a title
-3. Start writing your content
-4. Add tags by typing in the tag input and pressing Enter
-5. Choose a color to categorize your note
+1. Click the **"➕ New Note"** button for a blank note
+2. **Or** select a template from the dropdown for pre-formatted notes:
+   - 📄 Blank Note
+   - 💼 Meeting Notes
+   - ✅ To-Do List
+   - 📔 Journal Entry
+   - 💡 Ideas & Brainstorm
+   - 💻 Code Snippet
+   - 🔬 Research Notes
+3. Give your note a title (auto-fills from template)
+4. Start writing your content
+5. Add tags by typing in the tag input and pressing Enter
+6. Choose a color to categorize your note
+
+### Quick Actions
+- **⭐ Favorite** - Star important notes for quick access
+- **📌 Pin** - Keep notes at the top of your list
+- **📋 Duplicate** - Create a copy of any note
+- **📦 Archive** - Hide notes without deleting them
+- **↶↷ Undo/Redo** - Revert or reapply changes
+- **Right-click** any note for a context menu with all actions
 
 ### Writing with Markdown
-LocalNotes supports common markdown syntax:
+LocalNotes supports extensive markdown syntax:
 
 ```markdown
 # Heading 1
 ## Heading 2
 ### Heading 3
+#### Heading 4
 
-**bold text**
-*italic text*
+**bold** *italic* ***bold italic***
+__bold__ _italic_ ___bold italic___
+~~strikethrough~~
 
-- List item
-- Another item
+- Unordered list
+* Another item
 
-[ ] Todo item
-[x] Completed todo
+1. Ordered list
+2. Second item
+
+- [ ] Todo item
+- [x] Completed todo
 
 `inline code`
 
-> Quote text
+```
+Code block
+Multiple lines
+```
+
+> Blockquote text
+
+[Link text](https://example.com)
+![Image alt](https://example.com/image.jpg)
+
+---
+Horizontal rule
 ```
 
 ### Organizing Notes
+- **Quick Filters**: Switch between All Notes, Favorites, and Archived
 - **Pin Important Notes**: Click the 📌 icon to keep notes at the top
-- **Color Coding**: Use the color selector to visually categorize notes
+- **Favorite Notes**: Click ⭐ to add to favorites for quick access
+- **Color Coding**: Use the color selector to visually categorize notes (7 colors)
 - **Tags**: Add multiple tags to organize and filter notes
 - **Search**: Use the search bar to find notes by title, content, or tags
 - **Sort**: Sort notes by modification date, creation date, title, or color
+- **Archive**: Move old notes to archive to declutter your workspace
 
 ### Keyboard Shortcuts
 - `Ctrl/Cmd + N` - Create new note
 - `Ctrl/Cmd + S` - Save current note
 - `Ctrl/Cmd + F` - Focus search
-- `Ctrl/Cmd + D` - Delete current note
+- `Ctrl/Cmd + D` - Duplicate current note
+- `Ctrl/Cmd + E` - Archive/Unarchive note
+- `Ctrl/Cmd + Z` - Undo
+- `Ctrl/Cmd + Y` or `Ctrl/Cmd + Shift + Z` - Redo
+- `Delete` - Delete current note (when not editing)
+- `Escape` - Clear search or close modals
 
 ### Backup & Restore
 - **Export**: Click the 📤 button to download all notes as JSON
@@ -118,12 +170,19 @@ Choose from 7 beautiful colors to organize your notes:
 
 ## 💡 Tips & Tricks
 
-1. **Quick Navigation**: Click on any note in the list to open it instantly
-2. **Bulk Organization**: Use the tag filter to see all notes with a specific tag
-3. **Keep It Organized**: Use a combination of pins, colors, and tags for maximum organization
-4. **Regular Backups**: Export your notes regularly to keep backups
-5. **Split View**: Use split view mode when working with markdown for the best experience
-6. **Auto-save**: Just start typing - there's no need to manually save!
+1. **Use Templates**: Save time with pre-formatted templates for common note types
+2. **Right-Click Power**: Right-click any note for quick access to all actions
+3. **Favorites + Pins**: Combine favorites and pins for a powerful organizational system
+4. **Archive Old Notes**: Keep your workspace clean by archiving completed or old notes
+5. **Undo Mistakes**: Made a mistake? Ctrl+Z works across all note operations
+6. **Quick Navigation**: Click on any note in the list to open it instantly
+7. **Bulk Organization**: Use the tag filter to see all notes with a specific tag
+8. **Keep It Organized**: Use a combination of favorites, pins, colors, and tags
+9. **Regular Backups**: Export your notes regularly to keep backups
+10. **Split View**: Use split view mode when working with markdown for the best experience
+11. **Auto-save**: Just start typing - there's no need to manually save!
+12. **Storage Monitor**: Keep an eye on the storage indicator to manage your data
+13. **Keyboard Shortcuts**: Master the shortcuts to work 10x faster
 
 ## 🔧 Technical Details
 
@@ -153,9 +212,17 @@ All notes are stored in your browser's LocalStorage. Each note contains:
 - Unique ID
 - Title and content
 - Tags array
-- Color preference
-- Pin status
-- Creation and modification timestamps
+- Color preference (7 colors available)
+- Pin status (boolean)
+- Favorite status (boolean)
+- Archive status (boolean)
+- Creation timestamp (ISO format)
+- Last modification timestamp (ISO format)
+
+The app also stores:
+- User theme preference (light/dark)
+- Welcome screen status
+- 50-step undo/redo history
 
 ## 🛡️ Privacy & Security
 

@@ -166,6 +166,40 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
+.templates-section {
+    margin-bottom: 1.5rem;
+}
+
+.template-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.template-select {
+    width: 100%;
+    padding: 0.625rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.template-select:hover {
+    border-color: var(--primary-color);
+}
+
+.template-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
 .stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -200,6 +234,37 @@ body {
     margin-bottom: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+.quick-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.quick-filter-btn {
+    background: var(--bg-secondary);
+    border: 2px solid transparent;
+    padding: 0.625rem 0.875rem;
+    border-radius: var(--radius-sm);
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.quick-filter-btn:hover {
+    background: var(--bg-tertiary);
+    transform: translateX(3px);
+}
+
+.quick-filter-btn.active {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .tag-filter {
@@ -821,6 +886,206 @@ body {
     }
 }
 
+/* ==================== Welcome Modal ==================== */
+.welcome-modal {
+    max-width: 600px;
+    text-align: center;
+}
+
+.welcome-modal h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.welcome-intro {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.welcome-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.welcome-feature {
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-feature h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.welcome-feature p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.welcome-tips {
+    text-align: left;
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+}
+
+.welcome-tips h3 {
+    margin-bottom: 1rem;
+}
+
+.welcome-tips ul {
+    list-style: none;
+    padding: 0;
+}
+
+.welcome-tips li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+}
+
+.welcome-tips strong {
+    color: var(--primary-color);
+}
+
+/* ==================== Context Menu ==================== */
+.context-menu {
+    position: fixed;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 0.5rem;
+    z-index: 1000;
+    min-width: 180px;
+}
+
+.context-menu-item {
+    padding: 0.625rem 1rem;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.context-menu-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.context-menu-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 0.5rem 0;
+}
+
+/* ==================== Toast Notifications ==================== */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    pointer-events: none;
+}
+
+.toast {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.5rem;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 300px;
+    pointer-events: all;
+    animation: slideInRight 0.3s ease-out;
+}
+
+.toast.success {
+    border-left: 4px solid #68d391;
+}
+
+.toast.error {
+    border-left: 4px solid #fc8181;
+}
+
+.toast.info {
+    border-left: 4px solid #63b3ed;
+}
+
+.toast.warning {
+    border-left: 4px solid #f6ad55;
+}
+
+.toast-icon {
+    font-size: 1.25rem;
+}
+
+.toast-message {
+    flex: 1;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.25rem;
+    padding: 0;
+    opacity: 0.7;
+    transition: var(--transition);
+}
+
+.toast-close:hover {
+    opacity: 1;
+}
+
+/* ==================== Favorite Indicator ==================== */
+.note-card.favorited {
+    border-top: 3px solid #f6ad55;
+}
+
+.note-card.favorited::after {
+    content: '⭐';
+    position: absolute;
+    top: 0.75rem;
+    right: 2.5rem;
+    font-size: 0.875rem;
+}
+
+/* ==================== Archived Note Style ==================== */
+.note-card.archived {
+    opacity: 0.6;
+}
+
+.note-card.archived::before {
+    content: '📦';
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.75rem;
+    opacity: 0.5;
+}
+
 /* ==================== Animations ==================== */
 @keyframes fadeIn {
     from {
@@ -833,8 +1098,36 @@ body {
     }
 }
 
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
 .note-card {
     animation: fadeIn 0.3s ease-out;
+}
+
+.icon-btn:active {
+    transform: scale(0.95);
+}
+
+.note-card:active {
+    transform: scale(0.98);
 }
 
 /* ==================== Print Styles ==================== */

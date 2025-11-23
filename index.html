@@ -34,6 +34,20 @@
                     ➕ New Note
                 </button>
 
+                <div class="templates-section">
+                    <label for="templateSelect" class="template-label">📋 Quick Templates</label>
+                    <select id="templateSelect" class="template-select">
+                        <option value="">Choose a template...</option>
+                        <option value="blank">📄 Blank Note</option>
+                        <option value="meeting">💼 Meeting Notes</option>
+                        <option value="todo">✅ To-Do List</option>
+                        <option value="journal">📔 Journal Entry</option>
+                        <option value="ideas">💡 Ideas & Brainstorm</option>
+                        <option value="code">💻 Code Snippet</option>
+                        <option value="research">🔬 Research Notes</option>
+                    </select>
+                </div>
+
                 <div class="stats">
                     <div class="stat-item">
                         <span class="stat-label">Total Notes</span>
@@ -43,12 +57,29 @@
                         <span class="stat-label">Tags</span>
                         <span class="stat-value" id="totalTags">0</span>
                     </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Archived</span>
+                        <span class="stat-value" id="totalArchived">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Storage</span>
+                        <span class="stat-value" id="storageUsed">0%</span>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Quick Filters</h3>
+                    <div class="quick-filters">
+                        <button class="quick-filter-btn active" data-filter="all">📝 All Notes</button>
+                        <button class="quick-filter-btn" data-filter="favorites">⭐ Favorites</button>
+                        <button class="quick-filter-btn" data-filter="archived">📦 Archived</button>
+                    </div>
                 </div>
 
                 <div class="filter-section">
                     <h3>Filter by Tag</h3>
                     <div id="tagFilter" class="tag-filter">
-                        <button class="tag-filter-btn active" data-tag="all">All Notes</button>
+                        <button class="tag-filter-btn active" data-tag="all">All Tags</button>
                     </div>
                 </div>
 
@@ -65,10 +96,14 @@
                 <div class="keyboard-shortcuts">
                     <h4>Keyboard Shortcuts</h4>
                     <div class="shortcut-list">
-                        <div><kbd>Ctrl</kbd> + <kbd>N</kbd> New Note</div>
-                        <div><kbd>Ctrl</kbd> + <kbd>S</kbd> Save</div>
-                        <div><kbd>Ctrl</kbd> + <kbd>F</kbd> Search</div>
-                        <div><kbd>Ctrl</kbd> + <kbd>D</kbd> Delete</div>
+                        <div><kbd>Ctrl</kbd>+<kbd>N</kbd> New</div>
+                        <div><kbd>Ctrl</kbd>+<kbd>S</kbd> Save</div>
+                        <div><kbd>Ctrl</kbd>+<kbd>F</kbd> Search</div>
+                        <div><kbd>Ctrl</kbd>+<kbd>D</kbd> Duplicate</div>
+                        <div><kbd>Ctrl</kbd>+<kbd>E</kbd> Archive</div>
+                        <div><kbd>Ctrl</kbd>+<kbd>Z</kbd> Undo</div>
+                        <div><kbd>Ctrl</kbd>+<kbd>Y</kbd> Redo</div>
+                        <div><kbd>Del</kbd> Delete</div>
                     </div>
                 </div>
             </aside>
@@ -100,7 +135,11 @@
                     <div class="editor-toolbar">
                         <input type="text" id="noteTitle" class="note-title-input" placeholder="Note title...">
                         <div class="editor-actions">
+                            <button id="undoBtn" class="icon-btn" title="Undo (Ctrl+Z)">↶</button>
+                            <button id="redoBtn" class="icon-btn" title="Redo (Ctrl+Y)">↷</button>
+                            <button id="favoriteBtn" class="icon-btn" title="Add to Favorites">⭐</button>
                             <button id="pinBtn" class="icon-btn" title="Pin Note">📌</button>
+                            <button id="duplicateBtn" class="icon-btn" title="Duplicate Note">📋</button>
                             <select id="colorSelect" class="color-select" title="Note Color">
                                 <option value="">Default</option>
                                 <option value="red">🔴 Red</option>
@@ -111,6 +150,7 @@
                                 <option value="purple">🟣 Purple</option>
                                 <option value="pink">🌸 Pink</option>
                             </select>
+                            <button id="archiveBtn" class="icon-btn" title="Archive Note">📦</button>
                             <button id="deleteBtn" class="icon-btn delete-btn" title="Delete Note">🗑️</button>
                         </div>
                     </div>
@@ -170,6 +210,61 @@ Supports Markdown:
             </div>
         </div>
     </div>
+
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content welcome-modal">
+            <h1>✨ Welcome to LocalNotes!</h1>
+            <p class="welcome-intro">Your privacy-focused note-taking companion</p>
+
+            <div class="welcome-features">
+                <div class="welcome-feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>100% Private</h3>
+                    <p>All your notes stay on your device</p>
+                </div>
+                <div class="welcome-feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>No servers, instant response</p>
+                </div>
+                <div class="welcome-feature">
+                    <div class="feature-icon">✨</div>
+                    <h3>Feature Rich</h3>
+                    <p>Markdown, tags, search, and more</p>
+                </div>
+            </div>
+
+            <div class="welcome-tips">
+                <h3>Quick Tips:</h3>
+                <ul>
+                    <li>💡 Use <strong>Ctrl+N</strong> to quickly create a new note</li>
+                    <li>🏷️ Add tags to organize your notes</li>
+                    <li>⭐ Star your favorite notes for quick access</li>
+                    <li>📋 Try templates for common note types</li>
+                    <li>🌙 Toggle dark mode for comfortable night writing</li>
+                </ul>
+            </div>
+
+            <div class="modal-actions">
+                <button id="getStartedBtn" class="btn-primary">Get Started! 🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu" style="display: none;">
+        <div class="context-menu-item" data-action="open">📖 Open</div>
+        <div class="context-menu-item" data-action="favorite">⭐ Toggle Favorite</div>
+        <div class="context-menu-item" data-action="pin">📌 Toggle Pin</div>
+        <div class="context-menu-item" data-action="duplicate">📋 Duplicate</div>
+        <div class="context-menu-item" data-action="archive">📦 Archive</div>
+        <div class="context-menu-divider"></div>
+        <div class="context-menu-item" data-action="delete">🗑️ Delete</div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
 
     <script src="script.js"></script>
 </body>
